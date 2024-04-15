@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
+import "./PatronList.css"
 
 
 
@@ -57,7 +58,7 @@ const PatronList = () => {
       {patronList.map((patron) => {
         return (
           
-          <div key={patron.id}>
+          <div key={patron.id} className='patron-item'>
             <h3>{patron.first_name} {patron.last_name}</h3>
             <p>{patron.email}</p>
             <p>{patron.phone}</p>

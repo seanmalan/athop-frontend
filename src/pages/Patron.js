@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
+import "./Patron.css"
 
 const Patron = () => {
   let { id } = useParams()
@@ -49,9 +50,9 @@ const Patron = () => {
 
     <>
 
-    <h1>Patron</h1>
+    <h1 style={{textAlign: "center"}}>Patron</h1>
 
-    <div>
+    <div className='indiv-patron-details'>
       
           <div key={patronData.patron.id}>
             <h3>{patronData.patron.first_name} {patronData.patron.last_name}</h3>
@@ -60,13 +61,13 @@ const Patron = () => {
           </div>
     </div>
 
-    <div>
+    <div className='indiv-patron-cards'>
       <h2>
         Cards
       </h2>
       {patronData.cards.map((card) => {
         return (
-          <div key={card.id}>
+          <div key={card.id} className='indiv-patron-card'>
             <h3> Your card number is: {card.card_number}</h3>
             <p>Youre Current Balance is: ${card.balance}</p>
             
@@ -77,7 +78,7 @@ const Patron = () => {
       
     </div>
 
-    <div>
+    <div className='indiv-patron-journey'>
       <h2>Journeys</h2>
 
       {patronData.journeys.map((journey) => {
@@ -94,7 +95,7 @@ const Patron = () => {
       })}
     </div>
 
-    <div>
+    <div className='indiv-patron-transaction'>
      <h2>Transactions</h2>
 
       {patronData.transactions.map((transaction) => {
