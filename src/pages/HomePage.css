@@ -1,7 +1,45 @@
-
-
+/* make the homepage image be the background and everything else sits over the top of it */
 
 .homepage-image {
+  position: absolute;
+  z-index: -1;
   width: 100%;
-  height: auto;
+  height: 100%;
+  object-fit: cover;
+}
+
+.journey-form-section {
+  width: 50%;
+  margin: 3rem 2rem;
+  padding: 20px;
+  border-radius: 2rem;
+  background-color: rgba(44, 42, 42, 0.719);
+}
+
+.form-button-section {
+  margin: 1rem 1rem 0 0;
+  padding: 10px 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 41%;
+}
+
+
+
+.live-departures {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  color: white;
+}
+
+.timetables-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 2rem 0;
+  color: white;
 }

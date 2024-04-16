@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
-import { Tab, Tabs, Form, Button } from 'react-bootstrap';
+import React, { useState } from "react";
+import { Tab, Tabs, Form, Button } from "react-bootstrap";
 
 const JourneyPlanner = () => {
-  const [startPoint, setStartPoint] = useState('');
-  const [destination, setDestination] = useState('');
+  const [startPoint, setStartPoint] = useState("");
+  const [destination, setDestination] = useState("");
 
+
+  console.log("Start Point:", startPoint);
+  console.log("Destination:", destination);
   const handleSubmit = (e) => {
     e.preventDefault();
     // Handle form submission here
-    console.log('Start Point:', startPoint);
-    console.log('Destination:', destination);
+    console.log("Start Point:", startPoint);
+    console.log("Destination:", destination);
     // You can add your logic here to handle the form submission (e.g., API call)
   };
 
@@ -35,9 +38,17 @@ const JourneyPlanner = () => {
         />
       </Form.Group>
 
-      <Button variant="primary" type="submit">
-        Plan My Journey
-      </Button>
+      <div className="form-button-section">
+        {startPoint === "" || destination === "" ? (
+          <Button variant="dark" type="submit" disabled className="form-submit-button">
+            Plan My Journey
+          </Button>
+        ) : (
+          <Button variant="primary" type="submit">
+            Plan My Journey
+          </Button>
+        )}
+      </div>
     </Form>
   );
 };
@@ -50,11 +61,15 @@ const MyTabs = () => {
       </Tab>
       <Tab eventKey="liveDepartures" title="Live Departures">
         {/* Content for Live Departures tab goes here */}
-        <p>Live Departures content</p>
+        <div className="live-departures">
+          <p>Live Departures content</p>
+        </div>
       </Tab>
       <Tab eventKey="timetables" title="Timetables">
         {/* Content for Timetables tab goes here */}
-        <p>Timetables content</p>
+        <div className="timetables-content">
+          <p>Timetables content</p>
+        </div>
       </Tab>
     </Tabs>
   );
