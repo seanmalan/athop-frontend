@@ -21,6 +21,7 @@ function App() {
 
       <Route path="/journeys" element={<JourneysList />} />
 
+      <Route path="/cards" element={<Card />} />
       <Route path="/card/:id" element={<Card />} />
     </Routes>
     </div>
