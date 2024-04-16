@@ -2,7 +2,12 @@ import React from 'react'
 
 const Card = () => {
   return (
-    <div>Card</div>
+    <div>
+    <h1>
+
+    Card PAGE!!!!!
+    </h1>
+    </div>
   )
 }
 
