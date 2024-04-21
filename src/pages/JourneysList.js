@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
+import LoadingPage from '../components/LoadingPage';
+import errorImage from '../images/404-image.png'
 
 
 
@@ -34,7 +36,7 @@ const JourneysList = () => {
 
   
   if (isLoading) {
-    return <div>Just a couple more seconds...</div>
+    return <LoadingPage />
   }
 
   if (error) {
@@ -42,6 +44,7 @@ const JourneysList = () => {
     <div>
       <div>Uh oh! Something went wrong!</div>
       <div>{error.message}</div>
+      <img src={errorImage} alt="error" />
     </div>
   )
   }
