@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import "./PatronList.css"
+import LoadingPage from '../components/LoadingPage';
 
 
 
@@ -35,7 +36,7 @@ const PatronList = () => {
 
   
   if (isLoading) {
-    return <div>Just a couple more seconds...</div>
+    return <LoadingPage />
   }
 
   if (error) {
