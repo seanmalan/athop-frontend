@@ -11,12 +11,6 @@ import TravelForm from '../components/TravelForm'
 const HomePage = () => {
 
 
-
-
-
-
-
-
   return (
     <>
 
