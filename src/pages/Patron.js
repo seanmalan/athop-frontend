@@ -4,6 +4,9 @@ import "./Patron.css";
 import Card from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion";
 import Button from 'react-bootstrap/Button';
+import LoadingPage from "../components/LoadingPage";
+
+import errorImage from '../images/404-image.png'
 
 const Patron = () => {
   let { id } = useParams();
@@ -34,7 +37,7 @@ const Patron = () => {
   }, [id]);
 
   if (isLoading) {
-    return <div>Just a couple more seconds...</div>;
+    return <LoadingPage />;
   }
 
   if (error) {
@@ -42,6 +45,7 @@ const Patron = () => {
       <div>
         <div>Uh oh! Something went wrong!</div>
         <div>{error.message}</div>
+        <img src={errorImage} alt="error" />
       </div>
     );
   }

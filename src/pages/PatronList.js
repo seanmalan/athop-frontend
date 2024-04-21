@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Link } from "react-router-dom";
 import "./PatronList.css"
 import LoadingPage from '../components/LoadingPage';
+import errorImage from '../images/404-image.png'
 
 
 
@@ -44,6 +45,7 @@ const PatronList = () => {
     <div>
       <div>Uh oh! Something went wrong!</div>
       <div>{error.message}</div>
+      <img src={errorImage} alt="error" />
     </div>
   )
   }

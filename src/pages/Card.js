@@ -1,6 +1,12 @@
 import React from 'react'
+import errorImage from '../images/404-image.png'
 
 const Card = () => {
+
+
+
+
+  
   return (
     <div>
     <h1>
