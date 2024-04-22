@@ -17,6 +17,7 @@ const Header = () => {
             <Nav.Link href="/journeys">Journeys</Nav.Link>
             <Nav.Link href="/transactions">Transactions</Nav.Link>
             <Nav.Link href="/patron/:id">MyHUB</Nav.Link>
+            <Nav.Link href="/login">Log In</Nav.Link>
           </Nav>
         </Container>
 
