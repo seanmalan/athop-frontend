@@ -20,6 +20,10 @@ const PatronList = () => {
       let response = await fetch('http://127.0.0.1:8000/api/patrons/')
       let data = await response.json()
 
+
+
+
+
       if (!response.ok) {
         setError(data)
         setIsLoading(false)
@@ -54,6 +58,10 @@ const PatronList = () => {
   return (
 
     <>
+
+
+
+
 
     <h1>Patron List</h1>
 
