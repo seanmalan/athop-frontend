@@ -2,6 +2,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Patron from "./pages/Patron";
 import HomePage from "./pages/HomePage";
+import { AuthProvider } from "./context/AuthContext";
 import { Routes, Route, Navigate } from "react-router-dom";
 import TransactionList from "./pages/TransactionList";
 import JourneysList from "./pages/JourneysList";
@@ -14,6 +15,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      <AuthProvider>
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
@@ -27,6 +29,7 @@ function App() {
         <Route path="/cards" element={<Card />} />
         <Route path="/card/:id" element={<Card />} />
       </Routes>
+        </AuthProvider>
     </div>
   );
 }
