@@ -29,7 +29,20 @@ export const AuthProvider = ({ children }) => {
     });
 
     let data = await response.json()
+
+    if(response.status === 200) {
+      setAuthTokens(data)
+      setUser(data.access)
+
+    } else {
+      console.log('error:', data)
+      alert('Invalid credentials')
+    }
+
+
+
     console.log('data:', data)
+    console.log('response:', response)
   };
 
   let contextData = {
