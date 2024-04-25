@@ -1,14 +1,16 @@
-import { Route, Navigate } from 'react-router-dom';
 
-const PrivateRoute = ({ children, ...rest }) => {
-  const authenticated = false;
+import { Outlet, Navigate } from 'react-router-dom'
 
-  console.log("private route works");
+
+const PrivateRoutes = () => {
+  console.log("private route works")
+  // let auth = {'token': true }
+  let auth = true
   return (
-    <Route {...rest}>
-      {!authenticated ? <Navigate to='/login' replace /> : children}
-    </Route>
-  );
-};
+    auth ? 
+      <Outlet /> : <Navigate to="/login" />
+  
+)
+}
 
-export default PrivateRoute;
+export default PrivateRoutes
