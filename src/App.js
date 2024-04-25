@@ -2,11 +2,14 @@ import "./App.css";
 import Header from "./components/Header";
 import Patron from "./pages/Patron";
 import HomePage from "./pages/HomePage";
-import { Routes, Route, Navigate } from "react-router-dom";
+
+import { Routes, Route } from "react-router-dom";
 import TransactionList from "./pages/TransactionList";
 import JourneysList from "./pages/JourneysList";
 import Card from "./pages/Card";
 import LoginPage from "./pages/LoginPage";
+
+import PrivateRoutes from "./utils/PrivateRoute";
 
 function App() {
   const authenticated = false; // This should be replaced with your actual authentication logic
@@ -18,9 +21,10 @@ function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
 
-        <Route path="/patron/:id" element={authenticated ? <Patron /> : <Navigate to="/login" replace />} />
-
-        <Route path="/transactions" element={<TransactionList />} />
+          <Route element={<PrivateRoutes />}>
+            <Route path="/patron/:id" element={<Patron />} />
+          </Route>
+          <Route path="/transactions" element={<TransactionList />} />
 
         <Route path="/journeys" element={<JourneysList />} />
 
