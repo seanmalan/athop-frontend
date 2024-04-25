@@ -1,12 +1,16 @@
 
-import { Route, Redirect } from 'react-router-dom'
+import { Outlet, Navigate } from 'react-router-dom'
 
 
-const PrivateRoute = ({ children, ...rest }) => {
+const PrivateRoutes = () => {
   console.log("private route works")
+  // let auth = {'token': true }
+  let auth = true
   return (
-    <Route {...rest}> {children}</Route>
-  )
+    auth ? 
+      <Outlet /> : <Navigate to="/login" />
+  
+)
 }
 
-export default PrivateRoute
+export default PrivateRoutes
