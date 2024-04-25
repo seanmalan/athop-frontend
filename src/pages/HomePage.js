@@ -10,7 +10,9 @@ import TravelForm from '../components/TravelForm'
 
 
 const HomePage = () => {
-  let {name} = useContext(AuthContext)
+  let {user} = useContext(AuthContext)
+
+  console.log(`This is the user:${  user }`)
 
   return (
     <>
@@ -27,7 +29,8 @@ const HomePage = () => {
       <TravelForm />
     </div>
 
-    <h1> hello {name}</h1>
+    { user ? <h1>Welcome {user.username}</h1> : <Link to="/login">Login</Link> }
+    <h1 > hello </h1>
 
 
     {/* this section is for admin only will display like an admin view that will show all of the patrons in a list nd have a search bar to narrow down the users. */}

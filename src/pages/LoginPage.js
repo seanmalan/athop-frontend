@@ -5,6 +5,8 @@ const LoginPage = () => {
   let { loginUser } = useContext(AuthContext);
 
   return (
+    <>
+
     <div>
       <form onSubmit={loginUser}>
         <label>
@@ -22,6 +24,7 @@ const LoginPage = () => {
         <input type="submit" value="Submit" />
       </form>
     </div>
+    </>
   );
 };
 

@@ -7,21 +7,21 @@ const LoadingPage = () => {
     <>
 
     <div>LoadingPage</div>
-    <div class="windows8">
-	<div class="wBall" id="wBall_1">
-		<div class="wInnerBall"></div>
+    <div className="windows8">
+	<div className="wBall" id="wBall_1">
+		<div className="wInnerBall"></div>
 	</div>
-	<div class="wBall" id="wBall_2">
-		<div class="wInnerBall"></div>
+	<div className="wBall" id="wBall_2">
+		<div className="wInnerBall"></div>
 	</div>
-	<div class="wBall" id="wBall_3">
-		<div class="wInnerBall"></div>
+	<div className="wBall" id="wBall_3">
+		<div className="wInnerBall"></div>
 	</div>
-	<div class="wBall" id="wBall_4">
-		<div class="wInnerBall"></div>
+	<div className="wBall" id="wBall_4">
+		<div className="wInnerBall"></div>
 	</div>
-	<div class="wBall" id="wBall_5">
-		<div class="wInnerBall"></div>
+	<div className="wBall" id="wBall_5">
+		<div className="wInnerBall"></div>
 	</div>
 </div>
     </>
