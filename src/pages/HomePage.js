@@ -12,8 +12,6 @@ import TravelForm from '../components/TravelForm'
 const HomePage = () => {
   let {user} = useContext(AuthContext)
 
-  console.log(`This is the user:${  user }`)
-
   return (
     <>
 
@@ -30,7 +28,6 @@ const HomePage = () => {
     </div>
 
     { user ? <h1>Welcome {user.username}</h1> : <Link to="/login">Login</Link> }
-    <h1 > hello </h1>
 
 
     {/* this section is for admin only will display like an admin view that will show all of the patrons in a list nd have a search bar to narrow down the users. */}

@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { Link, useParams } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 import "./Patron.css";
 import Card from "react-bootstrap/Card";
 import Accordion from "react-bootstrap/Accordion";
@@ -13,13 +14,22 @@ const Patron = () => {
   let [patronData, setPatronData] = useState([]);
   let [isLoading, setIsLoading] = useState(true);
   let [error, setError] = useState(null);
+  let { authTokens } = useContext(AuthContext);
+
+  console.log(`authTokens: ${authTokens}`)
 
   console.log(patronData);
 
   useEffect(() => {
     let fetchData = async () => {
       let patronResponse = await fetch(
-        `http://127.0.0.1:8000/api/patron/${id}`
+        `http://127.0.0.1:8000/api/patron/${id}`, {
+        method: 'GET',  
+        headers: {
+            'Authorization': 'Bearer ' + String(authTokens.access),
+          }
+        }
+
       );
       let userData = await patronResponse.json();
 
@@ -34,7 +44,7 @@ const Patron = () => {
     };
 
     fetchData();
-  }, [id]);
+  }, [id, authTokens]);
 
   if (isLoading) {
     return <LoadingPage />;

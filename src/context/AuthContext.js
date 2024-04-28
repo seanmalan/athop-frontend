@@ -6,18 +6,12 @@ const AuthContext = createContext();
 
 export default AuthContext;
 
-
-
-
 export const AuthProvider = ({ children }) => {
-  let [user, setUser] = useState(()=> localStorage.getItem('authTokens') ? jwtDecode(localStorage.getItem('authTokens')) : null)
-    
   let [authTokens, setAuthTokens] = useState(()=> localStorage.getItem('authTokens') ? JSON.parse(localStorage.getItem('authTokens')) : null)
+    let [user, setUser] = useState(()=> localStorage.getItem('authTokens') ? jwtDecode(localStorage.getItem('authTokens')) : null)
+    let [loading, setLoading] = useState(true)
+  const navigate = useNavigate();
 
-  let [loading, setLoading] = useState(true)
-
-  const history = useNavigate();
-  
   const loginUser = async (e) => {
     e.preventDefault();
     
@@ -39,7 +33,7 @@ export const AuthProvider = ({ children }) => {
         setAuthTokens(data);
         setUser(jwtDecode(data.access));
         localStorage.setItem("authTokens", JSON.stringify(data));
-        history("/");
+        navigate("/");
       } else {
         console.log("error:", data);
         alert("Invalid credentials");
@@ -48,68 +42,72 @@ export const AuthProvider = ({ children }) => {
       console.error("Login error:", error);
       alert("Something went wrong during login.");
     }
+
+    if (loading) {
+      setLoading(false);
+    }
   };
 
-  let logoutUser = () => {
-    setAuthTokens(null)
-    setUser(null)
-    localStorage.removeItem('authTokens')
-    history('/')
-}
-
-
-let updateToken = async ()=> {
-
-  let response = await fetch('http://127.0.0.1:8000/api/token/refresh/', {
-      method:'POST',
-      headers:{
-          'Content-Type':'application/json'
-      },
-      body:JSON.stringify({'refresh':authTokens?.refresh})
-  })
-
-  let data = await response.json()
-  
-  if (response.status === 200){
-      setAuthTokens(data)
-      setUser(jwtDecode(data.access))
-      localStorage.setItem('authTokens', JSON.stringify(data))
-  }else{
-      logoutUser()
-  }
-
-  if(loading){
-      setLoading(false)
-  }
-}
-  
-  const authContextValue = {
-    user: user,
-    loginUser: loginUser,
-    logoutUser: logoutUser,
-    updateToken: updateToken
+  const logoutUser = () => {
+    setAuthTokens(null);
+    setUser(null);
+    localStorage.removeItem('authTokens');
+    navigate("/");
   };
 
-  useEffect(()=> {
+  const updateToken = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:8000/api/token/refresh/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ 'refresh': authTokens?.refresh })
+      });
 
-    if(loading){
-        updateToken()
+      const data = await response.json();
+
+      if (response.status === 200) {
+        setAuthTokens(data);
+        setUser(jwtDecode(data.access));
+        localStorage.setItem('authTokens', JSON.stringify(data));
+      } else {
+        logoutUser();
+      }
+    } catch (error) {
+      console.error("Token refresh error:", error);
+      logoutUser();
     }
 
-    let fourMinutes = 1000 * 60 * 4
+    if (loading) {
+      setLoading(false);
+    }
+  };
 
-    let interval =  setInterval(()=> {
-        if(authTokens){
-            updateToken()
-        }
-    }, fourMinutes)
-    return ()=> clearInterval(interval)
+  useEffect(() => {
+    if (loading) {
+      updateToken();
+    }
 
-}, [authTokens, loading, updateToken])
-  
+    const interval = setInterval(() => {
+      if (authTokens) {
+        updateToken();
+      }
+    }, 240000); // Refresh token every 4 minutes
+
+    return () => clearInterval(interval);
+  }, [authTokens, loading,]);
+
+  const authContextValue = {
+    user:user,
+    loginUser:loginUser,
+    logoutUser:logoutUser,
+    authTokens:authTokens
+  };
+
   return (
     <AuthContext.Provider value={authContextValue}>
-      {children}
+      {loading ? null : children}
     </AuthContext.Provider>
   );
 };
