@@ -68,3 +68,8 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+### Background Photo
+The background picture I used of Auckland City is by Liam Spicer found here on Pexels https://www.pexels.com/photo/the-pink-lightpath-of-auckland-new-zealand-5342978/
